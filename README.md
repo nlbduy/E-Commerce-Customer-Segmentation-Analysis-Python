@@ -83,7 +83,7 @@ Each customer is evaluated using the three RFM dimensions:
 - **Frequency:** Measured by counting the total number of invoices or transactions per customer.
 - **Monetary:** Measured by summing the total value of all purchases across the customer’s lifetime.
 
-Once calculated, the values for each dimension are divided into five equal groups (quintiles), with scores assigned from 1 to 5. A score of 1 represents the lowest value, while a score of 5 represents the highest.
+**Once calculated, the values for each dimension are divided into five equal groups (quintiles), with scores assigned from 1 to 5. A score of 1 represents the lowest value, while a score of 5 represents the highest.**
 
 The scoring direction differs by dimension:
 
@@ -123,7 +123,9 @@ By combining these three scores, each customer is assigned an **RFM score**, res
 
 ## **⚙️ Data Schemas**
 
-**1️⃣ E-Commerce Retail**
+<details>
+ <summary>1️⃣<b>E-Commerce Retail</b></summary>
+
 
 | Column | Description | Data Type |
 | --- | --- | --- |
@@ -136,12 +138,17 @@ By combining these three scores, each customer is assigned an **RFM score**, res
 | **CustomerID** | Unique identifier for each customer. Some missing values exist. | `int64` |
 | **Country** | Country where the customer resides. | `object` |
 
-**2️⃣ Segmentation**
+</details>
+
+<details>
+ <summary>2️⃣ <b>Segmentation</b></summary>
 
 | **Column** | **Data Type** | **Description** |
 | --- | --- | --- |
 | Segment | `object` | Customer group label based on RFM analysis. |
 | RFM Score | `object` | Combination of Recency, Frequency, and Monetary scores mapped to each segment. |
+
+</details>
 
 ## **🗓️** Time Frame
 
@@ -154,6 +161,8 @@ By combining these three scores, each customer is assigned an **RFM score**, res
 
 ### **1.1. Import packages and modules**
 
+<details>
+ <summary>View details</summary>
 Input:
 
 ```python
@@ -162,9 +171,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 ```
+</details>
 
 ### 1.2. Import Dataset
 
+<details>
+ <summary>View details</summary>
 Input:
 
 ```python
@@ -184,6 +196,7 @@ segment_def_df_original = pd.read_excel('/content/drive/MyDrive/Module Projects/
 ecom_df = ecom_df_original.copy()
 segment_def_df = segment_def_df_original.copy()
 ```
+</details>
 
 ## **2️⃣ EDA and Data Reprocessing**
 
@@ -601,27 +614,27 @@ Performance for each market per metric
 
 **⚖️ Comparison Between the UK and Non-UK Markets**
 
-The UK market is the core market for SuperStore, concentrating the majority of customers and generating 85% of the company’s revenue. While the Non-UK markets have a relatively small customer base, their revenue contribution is proportionally higher, indicating a higher average spend per customer. This highlights notable growth potential within the Non-UK customer segment.
-
-In terms of the distribution of the R, F, and M metrics, consumer behavior between the UK and Non-UK markets shows no significant differences, despite the large customer base disparity. This suggests that a unified customer segmentation and marketing strategy can be effectively applied across both markets, rather than developing two entirely separate approaches.
-
-Regarding customer distribution across segments, *Champions* represent the largest segment in both markets. This indicates that both the UK and Non-UK markets maintain a loyal and high-value customer group in recent periods. However, due to the difference in market size, the Champions group in the UK far outweighs that of the Non-UK (nearly 1,000 vs. fewer than 100), reflecting the scale gap and frequency of customer interactions.
-
-Additionally, both markets report a significant presence of at-risk segments such as *Hibernating Customers*, *At Risk*, and *Lost Customers*, signaling the continued need for retention and reactivation efforts.
-
-In summary, despite differences in scale, the RFM behavioral patterns across the two markets are largely consistent, reinforcing the view that customer consumption behaviors do not differ substantially by geography.
+- **Similarities**:
+    - Despite the disparity in customer base, **RFM distributions are broadly consistent across the UK and Non-UK markets**. This supports the use of a unified segmentation and marketing strategy rather than separate approaches.
+    - **Champions are the largest segment in both markets**, highlighting a loyal, high-value customer base. However, the UK segment is much larger, reflecting differences in scale and customer interaction frequency.
+    - **Both markets show notable shares of at-risk groups** (Hibernating, At Risk, Lost), underscoring the need for ongoing retention and reactivation efforts.
+- **Differences**:
+    - The UK market serves as the company’s core, concentrating most customers and generating 85% of total revenue.
+    - Non-UK markets have a smaller customer base but contribute proportionally more revenue, suggesting **higher average spend per customer** and strong growth potential.
+    - The **Champions** segment in the UK is nearly **10x** larger than in Non-UK markets (about 1,000 vs. fewer than 100), emphasizing the scale gap.
 
 # **🚀 Final Conclusions and Recommendations**
 
-## 🎯 Campaign Objective
-
-To express gratitude to customers who have supported the company over the past year while strengthening engagement with potential customers and converting them into loyal buyers.
-
 ## 🧩 RFM-Based Segmentation Strategy
 
-Based on this objective, RFM segments can be grouped into three levels of priority:
+Based on the objective, RFM segments can be grouped into three levels of priority:
+- **👑Crown Jewels👑**: Primary target. High priority to launch appreciation and engagement initiatives to strengthen loyalty and maximize retention.
+- **🌱Saplings🌱**: Observe and nurture selectively, approach only if the budget allows.
+- **🧊Drifting Icebergs🧊**: Exclude from the short-term campaign. Plan separate reactivation initiatives.
 
-### **👑 Golden Bees - High Priority (Key Focus Segments) 👑**
+Specifically, as follows:
+
+### **👑 Crown Jewels - High Priority (Key Focus Segments) 👑**
 
 | Segment                      | Rationale                                                                 | Recommended Strategy                                                                                          |
 |------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
@@ -631,8 +644,7 @@ Based on this objective, RFM segments can be grouped into three levels of priori
 | Promising                    | 💡 First-time recent buyers <br> 👉🏼 Need strong onboarding experience.        | ✔️ Send follow-up “thank you” emails + small incentive for next purchase. <br> ✔️ Provide useful content (tips, product guides). |
 
 
-
-### **🌱 Seeds – Medium Priority (Monitor & Nurture) 🌱**
+### **🌱 Saplings – Medium Priority (Monitor & Nurture) 🌱**
 
 | Segment        | Rationale                                                                 | Recommended Strategy                                                                                          |
 |----------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
@@ -647,12 +659,6 @@ Based on this objective, RFM segments can be grouped into three levels of priori
 | Hibernating <br> At Risk <br> Lost Customers | 💡Inactive for a long time or low spend <br> 👉🏼 Hard to re-engage short term. | ✔️ Include in separate reactivation campaigns. <br> ✔️ Conduct exit surveys to assess churn reasons. |
 | About to Sleep <br> Cannot Lose Them         | 💡 Negative purchase patterns or long inactivity <br> 👉🏼 Misaligned with short-term “appreciation” theme. | ✔️ Keep monitoring. <br> ✔️ Exclude from current campaign investments. |
 
-
-## 🔭 Strategic Focus
-
-- **👑Golden Bees👑**: Primary target. High priority to launch appreciation and engagement initiatives to strengthen loyalty and maximize retention.
-- **🌱Seeds🌱**: Observe and nurture selectively, approach only if the budget allows.
-- **🧊Drifting Icebergs🧊**: Exclude from the short-term campaign. Plan separate reactivation initiatives.
 
 ## 🗺️ Geographic Strategy
 
