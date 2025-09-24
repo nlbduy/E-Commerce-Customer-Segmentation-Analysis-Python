@@ -1,5 +1,7 @@
 # **E-Commerce Customer RFM Segmentation Analysis with Python**
 
+<img width="2000" height="1333" alt="Image" src="https://github.com/user-attachments/assets/22a8c116-70b8-48f8-9eae-173f4c5e3286" />
+
 Author: Nguyen Luu Bao Duy
 
 Tool Used: Python
